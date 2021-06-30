@@ -10,3 +10,10 @@ git clone https://github.com/JeiKeiLim/.tmux.git
 ln -s -f .tmux/.tmux.conf
 cp .tmux/.tmux.conf.local .
 
+cat >> ~/.inputrc <<'EOF'
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+EOF
+
+echo "bind -f  ~/.inputrc" >> ~/.bashrc
+
