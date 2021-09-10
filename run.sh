@@ -1,6 +1,9 @@
 #!/bin/bash
 
+sudo add-apt-repository -y ppa:jonathonf/vim
+sudo apt update
 sudo apt -y install tmux vim htop
+exit 0
 
 cd ~
 git clone --depth=1 https://github.com/JeiKeiLim/vimrc.git ~/.vim_runtime
