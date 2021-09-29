@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo apt -y install software-properties-common
+
 sudo add-apt-repository -y ppa:jonathonf/vim
 sudo apt update
 sudo apt -y install tmux vim htop
