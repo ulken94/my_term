@@ -9,8 +9,8 @@ git clone --depth=1 https://github.com/ulken94/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
 
 git clone https://github.com/ulken94/.tmux.git
-ln -s -f .tmux/.tmux.conf
-cp .tmux/.tmux.conf.local .
+ln -s -f .tmux/.tmux.conf .
+ln -s -f .tmux/.tmux.conf.local .
 
 cat >> ~/.inputrc <<'EOF'
 "\e[A": history-search-backward
