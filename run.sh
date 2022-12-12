@@ -2,13 +2,19 @@
 
 sudo apt -y install software-properties-common
 
-sudo add-apt-repository -y ppa:jonathonf/vim
-sudo apt update
-sudo apt -y install tmux vim htop
+# Install neovim
+wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb
+sudo dpkg -i nvim-linux64.deb
+rm nvim-linux64.deb
 
-cd ~
-git clone --depth=1 https://github.com/JeiKeiLim/vimrc.git ~/.vim_runtime
-sh ~/.vim_runtime/install_awesome_vimrc.sh
+curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
+sudo bash nodesource_setup.sh
+sudo apt-get install nodejs
+rm nodesource_setup.sh
+sudo npm install -g neovim
+
+git clone -b custom https://github.com/JeiKeiLim/NvChad.git ~/.config/nvim --depth 1
+sudo apt install -y unzip build-essential python3.8-venv tmux htop
 
 git clone https://github.com/JeiKeiLim/.tmux.git
 ln -s -f .tmux/.tmux.conf
