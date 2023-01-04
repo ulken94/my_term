@@ -135,7 +135,7 @@ if [ $VIM == "nvim" ]; then
 
     # Install neovim
     if [ $OS == 'Linux' ]; then  # Linux-x86_64-Neovim
-        ubuntu_version=$((lsb_release -r | cut -f2 | cut -c -2))
+        ubuntu_version=$(lsb_release -r | cut -f2 | cut -c -2)
 
         if [ $ubuntu_version -ge 20 ]; then
             wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb
