@@ -159,6 +159,7 @@ if [ $VIM == "nvim" ]; then
     if [ $all_good -eq 1 ]; then
         sudo npm install -g neovim
         git clone -b custom https://github.com/JeiKeiLim/NvChad.git ~/.config/nvim --depth 1
+        nvim --headless "+Lazy! sync" +qa
     fi
 elif [ $VIM == 'vim' ]; then  # Linux-x86_64-Vim
     echo "Install vim ..."
