@@ -143,7 +143,7 @@ if [ $VIM == "nvim" ]; then
             wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
             chmod +x ./nvim.appimage
             mv ./nvim.appimage ~/.local/bin
-            ln -s ~/.local/bin/nvim.appimage ~/.local/bin/nvim
+            sudo ln -s ~/.local/bin/nvim.appimage /usr/local/bin/nvim
 
             curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
             sudo bash nodesource_setup.sh
