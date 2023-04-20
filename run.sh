@@ -138,12 +138,9 @@ if [ $VIM == "nvim" ]; then
         ubuntu_version=$(lsb_release -r | cut -f2 | cut -c -2)
 
         if [ $ubuntu_version -ge 20 ]; then
-            # wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb
-            sudo apt-get install -y fuse
-            wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
-            chmod +x ./nvim.appimage
-            mv ./nvim.appimage ~/.local/bin
-            sudo ln -s ~/.local/bin/nvim.appimage /usr/local/bin/nvim
+            wget https://github.com/neovim/neovim/releases/download/v0.8.3/nvim-linux64.deb
+            sudo dpkg -i nvim-linux64.deb
+            rm nvim-linux64.deb
 
             curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
             sudo bash nodesource_setup.sh
