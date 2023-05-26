@@ -144,7 +144,12 @@ if [ $VIM == "nvim" ]; then
 
             curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
             sudo bash nodesource_setup.sh
-            sudo apt-get install -y nodejs ripgrep python3.8-venv
+            sudo apt-get install -y nodejs ripgrep
+            if [ $ubuntu_version -ge 22 ]; then
+              sudo apt-get install -y python3.10-venv
+            else
+              sudo apt-get install -y python3.8-venv
+            fi
             rm nodesource_setup.sh
         else
             all_good=0
