@@ -151,6 +151,7 @@ if [ $VIM == "nvim" ]; then
         fi
       else
         # Non-ubuntu OS. I don't know what to do here.
+        echo "Non-ubuntu OS detected. python virtual environment may need to be installed manually"
       fi
     elif [ $OS == 'Darwin' ]; then
       brew install ninja cmake gettext curl
