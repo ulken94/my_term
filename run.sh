@@ -165,7 +165,7 @@ if [ $VIM == "nvim" ]; then
 
     # Install Neovim
     if [ $OS == 'Linux' ]; then
-      cd build && cpack -G DEB && sudo dpkg -i nvim-linux64.DEB
+      cd build && cpack -G DEB && sudo dpkg -i nvim-linux64.deb
     elif [ $OS == 'Darwin' ]; then
       sudo make install
     fi
