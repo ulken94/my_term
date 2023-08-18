@@ -131,41 +131,49 @@ fi
 
 if [ $VIM == "nvim" ]; then
     echo "Install neovim ..."
-    all_good=1
 
-    # Install neovim
-    if [ $OS == 'Linux' ]; then  # Linux-x86_64-Neovim
+    # Install build prerequisites and node
+    if [ $OS == 'Linux' ]; then
+      sudo apt-get -y install ninja-build gettext cmake unzip curl
+      curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
+      sudo bash nodesource_setup.sh
+      rm nodesource_setup.sh
+
+      sudo apt-get install -y nodejs ripgrep
+
+      # Ubuntu needs to install python virtual environment
+      if [ "$(uname -a | cut -d' ' -f4 | cut -d'-' -f2)" == "Ubuntu" ]; then
         ubuntu_version=$(lsb_release -r | cut -f2 | cut -c -2)
-
-        if [ $ubuntu_version -ge 20 ]; then
-            wget https://github.com/neovim/neovim/releases/download/v0.8.3/nvim-linux64.deb
-            sudo dpkg -i nvim-linux64.deb
-            rm nvim-linux64.deb
-
-            curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
-            sudo bash nodesource_setup.sh
-            sudo apt-get install -y nodejs ripgrep
-            if [ $ubuntu_version -ge 22 ]; then
-              sudo apt-get install -y python3.10-venv
-            else
-              sudo apt-get install -y python3.8-venv
-            fi
-            rm nodesource_setup.sh
+        if [ $ubuntu_version -ge 22 ]; then
+          sudo apt-get install -y python3.10-venv
         else
-            all_good=0
-            echo "Neovim supports Ubuntu version greater than or equal to 20.04."
-            echo "Skip install neovim."
+          sudo apt-get install -y python3.8-venv
         fi
-    elif [ $OS == 'Darwin' ]; then  # Darwin-arm64-Neovim
-        brew install neovim
-        brew install node@16 ripgrep shellcheck
+      else
+        # Non-ubuntu OS. I don't know what to do here.
+      fi
+    elif [ $OS == 'Darwin' ]; then
+      brew install ninja cmake gettext curl
+      brew install node@16 ripgrep shellcheck
     fi
 
-    if [ $all_good -eq 1 ]; then
-        sudo npm install -g neovim
-        git clone -b custom https://github.com/JeiKeiLim/NvChad.git ~/.config/nvim --depth 1
-        nvim --headless "+Lazy! sync" +qa
+    # Build Neovim
+    git clone https://github.com/neovim/neovim.git -b release-0.9
+    neovim_path=$PWD/neovim
+    cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo
+
+    # Install Neovim
+    if [ $OS == 'Linux' ]; then
+      cd build && cpack -G DEB && sudo dpkg -i nvim-linux64.DEB
+    elif [ $OS == 'Darwin' ]; then
+      sudo make install
     fi
+    # Clean
+    cd $HOME && rm -rf $neovim_path
+
+    sudo npm install -g neovim
+    git clone -b custom https://github.com/JeiKeiLim/NvChad.git ~/.config/nvim --depth 1
+    nvim --headless "+Lazy! sync" +qa
 elif [ $VIM == 'vim' ]; then  # Linux-x86_64-Vim
     echo "Install vim ..."
     if [ $OS == 'Linux' ]; then
