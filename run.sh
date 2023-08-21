@@ -134,7 +134,7 @@ if [ $VIM == "nvim" ]; then
 
     # Install build prerequisites and node
     if [ $OS == 'Linux' ]; then
-      sudo apt-get -y install ninja-build gettext cmake unzip curl
+      sudo apt-get -y install ninja-build gettext cmake unzip curl file
       curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
       sudo bash nodesource_setup.sh
       rm nodesource_setup.sh
