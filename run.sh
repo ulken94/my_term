@@ -160,7 +160,7 @@ if [ $VIM == "nvim" ]; then
       fi
     elif [ $OS == 'Darwin' ]; then
       brew install ninja cmake gettext curl
-      brew install node@16 ripgrep shellcheck
+      brew install node@18 ripgrep shellcheck
     fi
 
     # Build Neovim
