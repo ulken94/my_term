@@ -164,7 +164,7 @@ if [ $VIM == "nvim" ]; then
     fi
 
     # Build Neovim
-    git clone https://github.com/neovim/neovim.git -b release-0.9
+    git clone https://github.com/neovim/neovim.git -b release-0.10
     neovim_path=$PWD/neovim
     cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo
 
@@ -178,7 +178,7 @@ if [ $VIM == "nvim" ]; then
     cd $HOME && rm -rf $neovim_path
 
     sudo npm install -g neovim
-    git clone -b custom https://github.com/JeiKeiLim/NvChad.git ~/.config/nvim --depth 1
+    git clone -b custom https://github.com/ulken94/starter ~/.config/nvim --depth 1
     nvim --headless "+Lazy! sync" +qa
     nvim --headless "+Lazy! sync" +qa
 elif [ $VIM == 'vim' ]; then  # Linux-x86_64-Vim
