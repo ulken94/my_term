@@ -160,11 +160,11 @@ if [ $VIM == "nvim" ]; then
       fi
     elif [ $OS == 'Darwin' ]; then
       brew install ninja cmake gettext curl
-      brew install node@18 ripgrep shellcheck
+      brew install node@24 ripgrep shellcheck
     fi
 
     # Build Neovim
-    git clone https://github.com/neovim/neovim.git -b v0.10.4
+    git clone https://github.com/neovim/neovim.git -b v0.11.4
     neovim_path=$PWD/neovim
     cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo
 
