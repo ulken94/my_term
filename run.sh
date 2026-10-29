@@ -107,7 +107,7 @@ if [ $SKIP_TMUX == "false" ]; then
     if [ -d "$HOME/.tmux" ]; then
         echo "Tmux setting already exist. Skip clone tmux setting."
     else
-        git clone https://github.com/gpakosz/.tmux.git ~/.tmux
+        git clone https://github.com/ulken94/.tmux.git ~/.tmux
         ln -s -f ~/.tmux/.tmux.conf ~/.tmux.conf
         cp ~/.tmux/.tmux.conf.local ~/.tmux.conf.local
     fi
